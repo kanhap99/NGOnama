@@ -12,8 +12,9 @@
     tools:context="com.kanhaprasad.ngonama.MainActivity"
     tools:showIn="@layout/activity_main">
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="3500px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         android:scrollbars="vertical">
         <TextView
             android:layout_width="wrap_content"
@@ -27,19 +28,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/events"
         android:visibility="invisible"
-        android:text="This is the page for events!" />
+        android:text="This page will contain info about events" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/search"
         android:visibility="invisible"
-        android:text="Here is the search functionality!" />
+        android:text="Here users can search for different NGOs" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/blog"
         android:visibility="invisible"
-        android:text="This is the NGONama Blog!" />
+        android:text="This area will contain the NGONama blog" />
 
 
 </RelativeLayout>

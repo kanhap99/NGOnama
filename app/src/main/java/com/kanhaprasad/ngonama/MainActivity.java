@@ -18,6 +18,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 
 public class MainActivity extends AppCompatActivity {
+    TextView about, events,search,blog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TextView about = (TextView) findViewById(R.id.about_us);
-        final TextView events = (TextView) findViewById(R.id.events);
-        final TextView search = (TextView) findViewById(R.id.search);
-        final TextView blog = (TextView) findViewById(R.id.blog);
+        about = (TextView) findViewById(R.id.about_us);
+        events = (TextView) findViewById(R.id.events);
+        search = (TextView) findViewById(R.id.search);
+        blog = (TextView) findViewById(R.id.blog);
 
         about.setText(Html.fromHtml("<p> NGONAMA is a revolutionary initiative of Digital Empowerment Foundation. As part of its commitment to sustainable efforts of social and digital upliftment activities, Digital Empowerment Foundation aims to provide a platform to participate and share the knowledge, skills, experiences and good governance across the civil society sector.</p>" +
                 "<p>\n" +
@@ -84,36 +85,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
-
-
-                if(position == 0) {
-                    about.setVisibility(View.VISIBLE);
-                    events.setVisibility(View.INVISIBLE);
-                    search.setVisibility(View.INVISIBLE);
-                    blog.setVisibility(View.INVISIBLE);
-
-                }
-                if(position == 1) {
-                    about.setVisibility(View.INVISIBLE);
-                    events.setVisibility(View.VISIBLE);
-                    search.setVisibility(View.INVISIBLE);
-                    blog.setVisibility(View.INVISIBLE);
-
-                }
-                if(position == 2) {
-                    about.setVisibility(View.INVISIBLE);
-                    events.setVisibility(View.INVISIBLE);
-                    search.setVisibility(View.VISIBLE);
-                    blog.setVisibility(View.INVISIBLE);
-
-                }
-                if(position == 3) {
-                    about.setVisibility(View.INVISIBLE);
-                    events.setVisibility(View.INVISIBLE);
-                    search.setVisibility(View.INVISIBLE);
-                    blog.setVisibility(View.VISIBLE);
-
-                }
+                toggle(position);
                 return true;
             }
         });
@@ -140,5 +112,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void toggle(int position){
+        TextView views[] = {about, events,search,blog};
+        int count = 0;
+        for(TextView view: views) {
+            if(position == count)
+                view.setVisibility(View.VISIBLE);
+            else
+                view.setVisibility(View.INVISIBLE);
+            count++;
+        }
+
+
     }
 }
