@@ -77,28 +77,28 @@ public class MainActivity extends AppCompatActivity {
                 TextView search = (TextView) findViewById(R.id.search);
                 TextView blog = (TextView) findViewById(R.id.blog);
 
-                if(position == 1) {
+                if(position == 0) {
                     about.setVisibility(View.VISIBLE);
                     events.setVisibility(View.INVISIBLE);
                     search.setVisibility(View.INVISIBLE);
                     blog.setVisibility(View.INVISIBLE);
 
                 }
-                if(position == 2) {
+                if(position == 1) {
                     about.setVisibility(View.INVISIBLE);
                     events.setVisibility(View.VISIBLE);
                     search.setVisibility(View.INVISIBLE);
                     blog.setVisibility(View.INVISIBLE);
 
                 }
-                if(position == 3) {
+                if(position == 2) {
                     about.setVisibility(View.INVISIBLE);
                     events.setVisibility(View.INVISIBLE);
                     search.setVisibility(View.VISIBLE);
                     blog.setVisibility(View.INVISIBLE);
 
                 }
-                if(position == 4) {
+                if(position == 3) {
                     about.setVisibility(View.INVISIBLE);
                     events.setVisibility(View.INVISIBLE);
                     search.setVisibility(View.INVISIBLE);

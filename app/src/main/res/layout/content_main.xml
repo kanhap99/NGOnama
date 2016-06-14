@@ -22,19 +22,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/events"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:text="This is the page for events!" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/search"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:text="Here is the search functionality!" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/blog"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:text="This is the NGONama Blog!" />
 
 
