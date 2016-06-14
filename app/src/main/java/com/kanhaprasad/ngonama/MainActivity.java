@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final TextView about = (TextView) findViewById(R.id.about_us);
+        final TextView events = (TextView) findViewById(R.id.events);
+        final TextView search = (TextView) findViewById(R.id.search);
+        final TextView blog = (TextView) findViewById(R.id.blog);
+
+        about.setText(Html.fromHtml("<p> NGONAMA is a revolutionary initiative of Digital Empowerment Foundation. As part of its commitment to sustainable efforts of social and digital upliftment activities, Digital Empowerment Foundation aims to provide a platform to participate and share the knowledge, skills, experiences and good governance across the civil society sector.</p>" +
+                "<p>\n" +
+                "The platform is designed to bring together NGOs, volunteers, Individuals and government and corporate foundations at the same platform to engage with each other. NGONAMA is a platform for NGOs to connect, discover, engage, learn and share through communicating with other NGOs across boundaries through openness.</p>" +
+                "The central idea of NGONAMA is to build an interactive platform for NGOs to collaborate amongst themselves through personal outreach.\n" +
+                "\n" +
+                "<p>The online portal will provides a channel to people who are interested in contributing in social activities through their participation and expertise.  NGONAMA provides NGOs with a platform to interact with a global community and participate in various decision-making and programs leading to a be a better world, a world of economic and social justice.</p>"));
 
 
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
@@ -59,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setColored(true);
 
 // Set current item programmatically
-        bottomNavigation.setCurrentItem(1);
+        bottomNavigation.setCurrentItem(0);
 
 // Customize notification (title, background, typeface)
         bottomNavigation.setNotificationBackgroundColor(Color.parseColor("#F63D2B"));
@@ -72,10 +84,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
-                TextView about = (TextView) findViewById(R.id.about_us);
-                TextView events = (TextView) findViewById(R.id.events);
-                TextView search = (TextView) findViewById(R.id.search);
-                TextView blog = (TextView) findViewById(R.id.blog);
+
 
                 if(position == 0) {
                     about.setVisibility(View.VISIBLE);
