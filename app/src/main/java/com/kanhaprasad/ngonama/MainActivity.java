@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -133,12 +133,12 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
-        return super.onOptionsItemSelected(item);
-    }
+       // return super.onOptionsItemSelected(item);
+    //}
 
     @Override
     public void onBackPressed() {
@@ -188,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         this.progress.setProgress(progress);
 
     }
+
     private class MyWebViewClient extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
