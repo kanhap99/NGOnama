@@ -3,14 +3,14 @@ package com.kanhaprasad.ngonama;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.graphics.Color;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     //declarations
     private WebView about,events,blog, search;
     private WebView webViews[] = new WebView[4];
+    private ProgressBar progress;
+    private TextView progressText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,35 +72,38 @@ public class MainActivity extends AppCompatActivity {
 // Add or remove notification for each item
         bottomNavigation.setNotification("4", 1);
         bottomNavigation.setNotification("", 1);
-//
 
-        //final WebView webview = new WebView(this);
-        //configuring the views
-
+        //initializing the webviews
         about = (WebView) findViewById(R.id.about_us);
         events = (WebView) findViewById(R.id.events);
         search = (WebView) findViewById(R.id.search);
         blog = (WebView) findViewById(R.id.blog);
 
+        //initializing webviews array for later
         webViews[0] = about;
         webViews[1] = events;
         webViews[2] = search;
         webViews[3] = blog;
 
+
+        //config the inbuilt browser for each webview
         for(WebView webview: webViews) {
             configWebView(webview);
         }
-        /*String aboutContent = "<html><body><p> NGONAMA is a revolutionary initiative of Digital Empowerment Foundation. As part of its commitment to sustainable efforts of social and digital upliftment activities, Digital Empowerment Foundation aims to provide a platform to participate and share the knowledge, skills, experiences and good governance across the civil society sector.</p>"+
-                "The platform is designed to bring together NGOs, volunteers, Individuals and government and corporate foundations at the same platform to engage with each other. NGONAMA is a platform for NGOs to connect, discover, engage, learn and share through communicating with other NGOs across boundaries through openness.</p>"+
-                "The central idea of NGONAMA is to build an interactive platform for NGOs to collaborate amongst themselves through personal outreach."+
-                "<p>The online portal will provides a channel to people who are interested in contributing in social activities through their participation and expertise.  NGONAMA provides NGOs with a platform to interact with a global community and participate in various decision-making and programs leading to a be a better world, a world of economic and social justice.</p></body></html>";
+        //load each webviews URL's
 
-        about.loadData(aboutContent, "text/html",null);*/
         about.loadUrl("http://ngonama.org/about-us");
-        events.loadUrl("http://ngonama.org/activity");
+        events.loadUrl("http://ngonama.org/forums");
         search.loadUrl("http://ngonama.org/search-ngo");
         blog.loadUrl("http://ngonama.org/blog");
-        // Set listener
+
+
+        //Progress bar for textview
+        progress = (ProgressBar) findViewById(R.id.progressBar);
+        progress.setMax(100);
+        progressText = (TextView) findViewById(R.id.progressText);
+
+        // Set listener for bottom nav
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
@@ -106,8 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-       // webview.loadUrl("http://ngonama.org/search-ngo");
     }
+
+    //method to display noInternet webview incase there is no internet connection
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -167,8 +176,23 @@ public class MainActivity extends AppCompatActivity {
                         "document.getElementsByClassName('footer-bottom')[0].style.display=\"none\";"+
                         "document.getElementById('whats-new-form').style.display=\"none\";"+
                         "}) () ");
-
+                MainActivity.this.progress.setVisibility(View.INVISIBLE);
+                MainActivity.this.progressText.setVisibility(View.INVISIBLE);
             }
         });
+        webview.setWebChromeClient(new MyWebViewClient());
+
+
+    }
+    public void setValue(int progress) {
+        this.progress.setProgress(progress);
+
+    }
+    private class MyWebViewClient extends WebChromeClient {
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            MainActivity.this.setValue(newProgress);
+            super.onProgressChanged(view, newProgress);
+        }
     }
 }
